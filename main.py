@@ -58,7 +58,7 @@ class Proc():
     def poll(self):
         if self.proc:
             rv = self.proc.poll()
-            # print(self.name, self.proc.pid, rv)
+            print(self.name, self.proc.pid, rv)
             if rv is not None:
                 self.state = State.DONE
                 self.proc.kill()
@@ -70,7 +70,7 @@ class Proc():
     @staticmethod
     def makeCmd(name, m3u8):
         name += '.mp4'
-        return "cvlc '{}' --sout='#duplicate{{dst=std{{access=file,mux=mp4,dst={}}}}}' vlc://quit".format(
+        return "vlc '{}' --sout='#duplicate{{dst=std{{access=file,mux=mp4,dst={}}}}}' vlc://quit".format(
             m3u8, name)
 
 
@@ -148,7 +148,7 @@ def main(args):
         except TimeoutExpired:
             pq.cleanup()
 
-    print('\nAll done >_0')
+    print('\nAll done')
 
 
 if __name__ == '__main__':
